@@ -26,7 +26,7 @@ import org.apache.lucene.analysis.standard.StandardTokenizer;
 /*
  * Team 6 - Assignment 1 - due 2/4/2016 5pm
  * Bennilyn Quek - bxq120430
- * Team Member: Kunal Kapoor
+ * Kunal Kapoor - kxk140330
  */
 public class Analyzer {
 
@@ -107,14 +107,15 @@ public class Analyzer {
 
         tokenStream = new StopFilter(LUCENE_VERSION, tokenStream, EnglishAnalyzer.getDefaultStopSet());
         tokenStream = new PorterStemFilter(tokenStream);
+        
         return tokenStream.toString();
     }
 
-    public Map<String, Integer> calculateWordFrequency(List<String> tokenStream) {
+    public Map<String, Integer> calculateWordFrequency(List<String> tokenizeStopStem) {
         
         Map<String, Integer> wordFrequency = new HashMap<String, Integer>();
-        for (String w : tokenStream) {
-            wordFrequency.put(w, Collections.frequency(tokenStream, w));
+        for (String w : tokenizeStopStem) {
+            wordFrequency.put(w, Collections.frequency(tokenizeStopStem, w));
         }
         System.out.println(wordFrequency);
         return wordFrequency;
@@ -250,7 +251,7 @@ public class Analyzer {
         Map<String, Integer> CorpusWordFreq = new HashMap<String, Integer>();
         Doc[] docHighestUnique = new Doc[3];
         Doc[] docLowestUnique = new Doc[3];
-        File startingDir = new File("C:\\\\Users\\\\Kunal-Kapoor\\\\Documents\\\\NetBeansProjects\\\\src\\\\com\\\\dts\\\\core\\\\"); // current directory
+        File startingDir = new File("C:\\Users\\Kunal-Kapoor\\Documents\\NetBeansProjects\\JavaApplication4\\oscar\\oscar12.1-61"); // current directory
 
         //File startingDir = new File("/Users/1116743/Documents");
         String[] fileType = {"java"};
