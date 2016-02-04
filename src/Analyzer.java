@@ -100,10 +100,10 @@ public class Analyzer {
 
     private static Version LUCENE_VERSION = Version.LUCENE_48;
 
-    private static String tokenizeStopStem(String wordsInDoc) {
+    private static String tokenizeStopStem(String input) {
 
         TokenStream tokenStream = new StandardTokenizer(
-                LUCENE_VERSION, new StringReader(wordsInDoc));
+                LUCENE_VERSION, new StringReader(input));
 
         tokenStream = new StopFilter(LUCENE_VERSION, tokenStream, EnglishAnalyzer.getDefaultStopSet());
         tokenStream = new PorterStemFilter(tokenStream);
@@ -111,6 +111,7 @@ public class Analyzer {
     }
 
     public Map<String, Integer> calculateWordFrequency(List<String> tokenStream) {
+        
         Map<String, Integer> wordFrequency = new HashMap<String, Integer>();
         for (String w : tokenStream) {
             wordFrequency.put(w, Collections.frequency(tokenStream, w));
@@ -263,6 +264,8 @@ public class Analyzer {
 
             List<String> parsedDoc = a.parseFile(a.getFile(f));
 
+             
+            a.tokenizeStopStem(parsedDoc.toString());
             /*
 			 * INSERT STEMMING HERE
              */
