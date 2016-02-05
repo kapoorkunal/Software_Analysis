@@ -72,7 +72,7 @@ public class Analyzer {
                     parsedLine[i] = parsedLine[i].replaceAll("[^a-zA-Z0-9]", "");
 
                     //if more than 2 characters, store to list
-                    if (parsedLine[i].trim().length() > 2) {
+                    if (parsedLine[i].trim().length() >= 2) {
 
                         String[] temp = parsedLine[i].split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
                         //if there is camel case split
